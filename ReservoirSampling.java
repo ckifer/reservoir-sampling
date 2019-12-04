@@ -25,16 +25,16 @@ public class ReservoirSampling
             // 'random' value between current 0 and i (4)
             int j = r.nextInt(i); 
               
-            // If the randomly  picked index is smaller than k (the length of the reservoir), 
-            // then replace the element present at the index 
-            // with new element from stream 
+            // If the index is smaller than k (the length of the reservoir), 
+            // then replace the element present at the index with element i from the stream
             if(j < k) 
                 reservoir[j] = stream[i];             
         } 
         return reservoir;
     } 
 
-    // simply use random generator to generate a 'random' list of streamLength ints from 0 to 100 to be the stream input
+    // simply use random generator to generate a 'random' list of 
+    // streamLength ints from 0 to 100 to be the stream input
     public static int[] generateStream(int streamLength) {
         Random random = new Random();
         int[] arr = new int[streamLength];
@@ -44,16 +44,22 @@ public class ReservoirSampling
         return arr;
     }
       
+    
     public static void main(String[] args) {
         // length of stream
         int n = 12;
+
         // stream of 'random' ints
         int stream[] = generateStream(n); 
+
+        // print out input
         System.out.println("'Randomly' generated input: " + Arrays.toString(stream));
+
         // number of samples to choose from stream
         int k = 4;
 
         int[] reservoir = new int[k];
+        // get random selection 5 times
         for(int i = 0; i < 5; i++){
             reservoir = selectSamples(stream, n, k); 
 
